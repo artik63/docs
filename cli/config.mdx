@@ -1,0 +1,159 @@
+---
+title: "Config"
+icon: wrench
+---
+
+<Accordion title="General">
+
+### license\_key
+
+`Your BLOOD license key`
+
+</Accordion>
+
+<Accordion title="Run mode">
+
+### mode
+
+Run mode needs to be set in order to operate bot as normal, or set up multi-region usage (MULTIPLE NFTS NEEDED!)
+
+<Note>
+mode = 0 - Normal usage
+
+mode = 1 - Frontend only mode
+
+mode = 2 - backend mode only
+</Note>
+
+</Accordion>
+
+<Accordion title="Frontend (ONLY FOR MODE = 1)">
+
+### host
+
+`Paste IP address of server with running backend instance`
+
+### port
+
+50000
+
+<Warning>
+If you have **multiple BACKEND windows opened**, you need to change it according to amount of them added\
+\
+Example:\
+**First window** = 50000\
+**Second window** = 50001 \
+**Third window** = 50002
+</Warning>
+
+### api\_key
+
+`Paste same API key as in backend instance`
+
+</Accordion>
+
+<Accordion title="Backend (ONLY FOR MODE = 2)">
+
+### expose
+
+`true` - activate backend instance
+
+### api\_key
+
+`Paste created API key inside brackets`  
+
+<Tip>
+**API key** can be set as **any word/phrase/hex/etc.**\
+You can generate it [here](https://makemeapassword.ligos.net/generate/hex)
+</Tip>
+
+### whitelisted\_ips
+
+`Paste IP address(es) where FRONTEND instances will be turned on`
+
+<Note>
+Example: \
+`'192.168.1.1, '192.168.1.2'`
+</Note>
+
+</Accordion>
+
+<Accordion title="Notification">
+
+### discord\_webhook\_url
+
+`Paste Discord Webhook URL`
+
+<Tip>
+**Don't know how to get Webhook?** [**Click**](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
+</Tip>
+
+</Accordion>
+
+<Accordion title="Solana settings">
+
+### rpc\_url
+
+`Paste RPC link`
+
+<Tip>
+If you have multiple RPCs please setup [bloodline](../addons/bloodline/ "mention") for smoother experience.
+</Tip>
+
+### geysers
+
+Yellowstone gRPC link(s).
+
+<Note>
+**If you have GRPCs to add please update \[solana] section in config with following format:**<br />
+
+```toml
+# Solana blockchain settings
+[solana]
+# Solana RPC URL
+rpc_url = 'your_rpc_link'
+# If true, automatic startup of tasks is disabled
+# This is related to limit-orders from strategies
+no_auto_task_startup = false
+
+# Solana Geyser configurations
+[[solana.geysers]]
+# Type of the Solana Geyser, e.g., 'yellowstone'
+type = 'yellowstone'
+# URL of the Solana Geyser, e.g https://mygeyser.com:5000
+url = 'http://your.grpc1.org:10001/'
+# Optional authentication token for accessing the Geyser
+x_token = ''
+
+# Solana Geyser configurations
+[[solana.geysers]]
+# Type of the Solana Geyser, e.g., 'yellowstone'
+type = 'yellowstone'
+# URL of the Solana Geyser, e.g https://mygeyser.com:5000
+url = 'http://your.grpc2.org:10001/'
+# Optional authentication token for accessing the Geyser
+x_token = ''
+```
+</Note>
+
+</Accordion>
+
+<Accordion title="Polygon settings">
+
+### rpc\_url
+
+`Paste RPC link`
+
+### ws\_urls
+
+`Paste Websocket URLs`
+
+<Note>
+Please follow correct format:
+
+```toml
+ws_urls = ['ws1','ws2','ws3']
+```
+</Note>
+
+</Accordion>

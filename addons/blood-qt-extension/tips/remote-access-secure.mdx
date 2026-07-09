@@ -1,0 +1,65 @@
+---
+title: "Remote access (Secure)"
+---
+
+## Setting up NGINX
+
+NGINX is like a traffic controller for the internet, making sure requests are handled quickly and efficiently. Compared to [remote-access-insecure.md](/addons/blood-qt-extension/tips/remote-access-insecure) it harder, but much more secure with unlimited bandwidth
+
+## Installation
+
+* Download [NGINX](https://nginx.org/en/download.html)\
+  You should select **`nginx/Windows-1.27.3`** (or any last version)
+* Inside download compressed folder, select nginx folder and move it to your desktop
+* Open folder -> conf -> open nginx.conf file\
+  Replace the file content with the following one
+
+```bash
+worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+    keepalive_timeout  65;
+
+    server {
+        listen 11111;
+
+        server_name localhost;
+
+        location / {
+            allow YOUR_API;
+            deny all;
+            proxy_pass http://localhost:50071;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+        
+        error_log logs/error.log;
+        access_log logs/access.log;
+    }
+}
+
+```
+
+* Replace **`YOUR_API`** with the ip of the machine that you using extension\
+  Go to this [website](https://whatismyipaddress.com/), copy IPv4, replace and save!\
+  Note: don't forget to add **`;`** symbol at the and of the line if you don't have one
+* Get back to nginx folder and launch the **`NGINX`**executable
+* Now you have your url that extension can use: **`http://YOUR_SERVER_IP:11111`**
+* Open extension -> Settings -> add new connection preset with url above and you are ready!
+
+<Warning>
+If you have any problems connecting the extension and BLOOD make sure that if your server has firewall enabled, be sure to add firewall rule for 11111 port\
+To do this you need:\
+\- Open Windows Defender Firewall application\
+\- Click on Advanced settings -> Inbound rules -> New rule\
+\- Select port, keep TCP and select Specific local ports, enter 11111 in input, allow the connection, in the next window keep everything checked and give it a name, like BLOOD
+</Warning>

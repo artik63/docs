@@ -1,0 +1,636 @@
+---
+title: "Preset"
+icon: file-powerpoint
+---
+
+### Solana
+
+<Accordion title="Solana Swap">
+
+### buy\_cu\_limit
+
+Compute Unit Limit for buy (set 0 = auto / hardcoded will be used)
+
+### sell\_cu\_limit
+
+Compute Unit Limit for sell (set 0 = auto / hardcoded amount will be used)
+
+### buy\_data\_size\_limit
+
+**Don't use unless you know what are doing!**
+
+### sell\_data\_size\_limit
+
+**Don't use unless you know what are doing!**
+
+### buy\_no\_simulate
+
+`true` - use custom CU llimit for buys
+
+### sell\_no\_simulate
+
+`true` - use custom CU llimit for sells
+
+### no\_custom\_ata
+
+**Don't use unless you know what are doing!**
+
+<Danger>
+Using this function, you won't be able to sell tokens via terminal unless you transfer them manually to another wallet!
+</Danger>
+
+### no\_auto\_wrap
+
+`true` - manage **wSOL/SOL** balance manually
+
+### no\_atl
+
+Removes table lookup from swap tx. **Don't use unless you know what are doing!**
+
+### confirm\_strategy
+
+`1` for multi-instance usage, requires gRPC. **Otherwise don't touch**
+
+### sleep\_before\_process\_ms
+
+Sleep time before processing task. Use for filters that require additional check time
+
+</Accordion>
+
+<Accordion title="BloodSwap">
+
+### enabled
+
+`true` - enable BloodSwap contract for swaps
+
+<Tip>
+Only useful for skipping slippage on PumpFun\
+**All checks below don't require contract to be on!**
+</Tip>
+
+### trade\_account
+
+**true** - buy token only one time
+
+***
+
+## Liquidity checks
+
+### enabled
+
+`true` - enable liquidity checks
+
+### min\_liquidity
+
+`Min liquidity amount (in SOL,USDC,USDT,etc.)` needed during TX execution time to confirm it, otherwise TX will fail 
+
+### max\_liquidity
+
+`Max liquidity amount (in SOL,USDC,USDT,etc.)`needed during TX execution time to confirm it, otherwise TX will fail
+
+***
+
+## Dynamic liquidity checks
+
+### enabled
+
+`true` - enable dynamic liquidity checks
+
+### min\_liquidity\_difference
+
+`Min liquidity difference amount between liquidity at launch VS current liquidity (in SOL,USDC,USDT,etc.)` needed during TX execution time to confirm it, otherwise TX will fail 
+
+### max\_liquidity\_difference
+
+`Max liquidity difference amount between liquidity at launch VS current liquidity (in SOL,USDC,USDT,etc.)` needed during TX execution time to confirm it, otherwise TX will fail 
+
+***
+
+## Slot checks
+
+### enabled
+
+`true` - enable slot checks
+
+### max\_slot\_difference
+
+`Max slot difference` between launch and TX execution, otherwise TX will fail
+
+***
+
+## Timestamp checks
+
+### enabled
+
+`true` - enable timestamp checks
+
+### max\_timestamp\_difference
+
+`Max difference amount (in seconds)` between **TOKEN LAUNCH** and **TRANSACTION TIME**, otherwise TX will fail
+
+</Accordion>
+
+<Accordion title="Swap Token settings">
+
+### skip\_mint\_authority
+
+`true` - skip tokens with mint authority
+
+### skip\_freeze\_authority
+
+`true` - skip tokens with freeze authority
+
+### skip\_no\_metadata
+
+`true` - skip tokens without metadata
+
+### skip\_no\_socials
+
+`true` - skip tokens without socials
+
+### target\_no\_socials
+
+`true` - buy tokens with mint authority
+
+### skip\_repeated\_socials
+
+`true` - skip token with same link repeated multiple times
+
+### skip\_with\_hosts
+
+Skip tokens with provided hosts in metadata
+
+<Note>
+Example: \
+`["x.com,twitter.com"]`
+</Note>
+
+### target\_with\_hosts
+
+Target tokens with provided hosts in metadata
+
+<Note>
+Example: \
+`["x.com,twitter.com"]`
+</Note>
+
+### min\_token\_age\_seconds
+
+`Min token age in seconds` since minting needed to proceed buy
+
+### max\_token\_age\_seconds
+
+`Max token age in seconds` since minting needed to proceed buy
+
+</Accordion>
+
+<Accordion title="Swap Token (Unique settings)">
+
+### enabled
+
+`true` - enable unique token checks
+
+### exact
+
+`true` - instead of partial match, require exact match for uniqueness
+
+### name
+
+`true` - skip tokens with non-unique names
+
+### symbol
+
+`true` - skip tokens with non-unique ticker
+
+### image
+
+`true` - skip tokens with non-unique image
+
+### twitter
+
+`true` - skip tokens with non-unique twitter links
+
+### telegram
+
+`true` - skip tokens with non-unique telegram links
+
+### website
+
+`true` - skip tokens with non-unique website links
+
+### time\_range\_hours
+
+Time range in hours to check for uniqueness
+
+<Danger>
+**Must set to make all checks work!**
+</Danger>
+
+</Accordion>
+
+<Accordion title="Swap Token (Pool settings)">
+
+### min\_stable\_reserves
+
+`Min amount of stable (SOL,USDC,USDT,etc) in pool reserves`
+
+### max\_stable\_reserves
+
+`Max amount of stable (SOL,USDC,USDT,etc) in pool reserves`
+
+### min\_token\_reserves
+
+`Min amount of tokens in pool reserves`
+
+### max\_token\_reserves
+
+`Max amount of tokens in pool reserves` 
+
+### min\_mcap\_usd
+
+`Min Market Cap (in USD)`
+
+### max\_mcap\_usd
+
+`Max Market Cap (in USD)`
+
+</Accordion>
+
+<Accordion title="Copy Trade">
+
+### min\_buy\_trigger
+
+`Min buy amount of trader` to trigger buy
+
+### max\_buy\_trigger
+
+`Max buy amount of trader` to trigger buy
+
+### min\_buy\_amount
+
+`Min buy amount` when copying certain percentage of trader's buy
+
+### max\_buy\_amount
+
+`Max buy amount` when copying certain percentage of trader's buy
+
+### first\_interaction
+
+`true` - copy trade only on the first interaction with the token.
+
+### skip\_sells
+
+`true` - skip trader's sells
+
+### skip\_mint
+
+`true` - skip swaps with token creation event
+
+### skip\_multi
+
+`true` - don't copy trader transaction with multiple swaps
+
+### max\_trades\_per\_token
+
+`Max amount of buys` for same token 
+
+</Accordion>
+
+<Accordion title="Copy Trade (Max Invest)">
+
+### enabled
+
+`true` - enable max invest tracker
+
+### limit
+
+Max amount (in SOL) to invest. Each trader has its own counter
+
+<Tip>
+Example for `Max Invest = 1`:\
+Buy 0.5 SOL - Counter `0 -> 0.5`\
+Sell 0.2 SOL - Counter `0.5 -> 0.3`
+</Tip>
+
+</Accordion>
+
+<Accordion title="Copy Trade (Max Loss)">
+
+### enabled
+
+`true` - enable max loss tracker
+
+### limit
+
+Max amount (in SOL) you afford to lose. Each trader has its own counter
+
+</Accordion>
+
+<Accordion title="Copy Trade (Exit Liquidity)">
+
+### enabled
+
+`true` - enable max invest tracker
+
+### threshold
+
+`Amount of times` you can be used as exit liquidity before skipping trades
+
+### time\_window\_seconds
+
+`Time window in seconds` to define if trade was an exit liquidity
+
+</Accordion>
+
+<Accordion title="AFK">
+
+### creator\_buy\_limit
+
+`Max amount` of token buys from the same dev
+
+### min\_dev\_buy
+
+`Min dev buy` (in SOL) to proceed buy
+
+### max\_dev\_buy
+
+`Max dev buy` (in SOL) to proceed buy
+
+### min\_dev\_balance
+
+`Min dev balance` (in SOL) to proceed buy
+
+### max\_dev\_balance
+
+`Min dev balance` (in SOL) to proceed buy
+
+### min\_dev\_tokens\_count
+
+`Min amount` of created tokens by dev to proceed buy
+
+### max\_dev\_tokens\_count
+
+`Max amount` of created tokens by dev to proceed buy
+
+### dev\_tokens\_count\_time\_range\_hours
+
+`Time range (in hours)` to consider when checking amount of tokens created by dev
+
+<Danger>
+Must set to work with `min_dev_tokens_count` and `max_dev_tokens_count` 
+</Danger>
+
+### dev\_tokens\_continue\_if\_not\_found
+
+`true` - proceed buy even if there is no info available
+
+</Accordion>
+
+<Accordion title="Market Cap Progress Check">
+
+### enabled
+
+`true` - enableMarket Cap Progress Check
+
+### target
+
+Market Cap (in USD) to reach before buy
+
+### lowest
+
+Market Cap (in USD) that bot will skip if detected one is below this value
+
+### duration\_ms
+
+Duration (in milliseconds) to check market cap progress
+
+</Accordion>
+
+<Accordion title="WL/BL wallet">
+
+### enabled
+
+`true` - enable WL/BL dev wallet checks
+
+### group
+
+`Name of wallet list file` (example: `whitelist`)
+
+### skip\_blacklisted
+
+`true` - skip blacklisted dev wallets
+
+### target\_whitelisted
+
+`true` - target whitelisted dev wallets
+
+</Accordion>
+
+<Accordion title="Third party (Pumpit pro)">
+
+### enabled
+
+`true` - enable Pumpit Pro
+
+### wl\_api\_key
+
+`Paste Whitelist API key`
+
+### bl\_api\_key
+
+`Paste Blacklist API key`
+
+</Accordion>
+
+<Accordion title="Pumpfun">
+
+### target\_mayhem
+
+`true` - to buy ONLY MAYHEM tokens
+
+### skip\_mayhem
+
+`true` - to SKIP MAYHEM tokens
+
+</Accordion>
+
+***
+
+### Polymarket
+
+<Accordion title="Polymarket">
+
+### whitelisted\_keywords
+
+Target markets containing specific keywords in the event name.
+
+```toml
+whitelisted_keywords = ['trump','fed']
+```
+
+### blacklisted\_keywords
+
+Skip markets containing specific keywords the event name.
+
+```toml
+blacklisted_keywords = ['bowl','lighter']
+```
+
+### whitelisted\_tags
+
+Target events containing specific tags.
+
+```toml
+whitelisted_tags = ['Politics','Sports','App Store']
+```
+
+### blacklisted\_tags
+
+Skip events containing specific tags.
+
+```toml
+blacklisted_tags = ['Crypto','Trump','Venezuela']
+```
+
+### min\_total\_volume
+
+Minimum market volume to trigger buy
+
+### max\_total\_volume
+
+Maximum market volume to trigger buy
+
+### min\_bid\_ask\_spread
+
+Minimum bid-ask spread to trigger buy
+
+### max\_bid\_ask\_spread
+
+Maximum bid-ask spread to trigger buy
+
+### min\_liquidity
+
+Minimum market liquidity (bid+ask orders) to trigger buy
+
+### max\_liquidity
+
+Maximum market liquidity (bid+ask orders) to trigger buy
+
+### min\_hours\_since\_market\_launch
+
+Minimum hours since market launch to trigger buy
+
+### max\_hours\_since\_market\_launch
+
+Maximum hours since market launch to trigger buy
+
+### min\_hours\_till\_market\_close
+
+Minimum hours till market close to trigger buy
+
+### max\_hours\_till\_market\_close
+
+Maximum hours till market close to trigger buy
+
+</Accordion>
+
+<Accordion title="Polymarket Holders">
+
+### count
+
+Amount of holders to check.
+
+<Tip>
+Maximum amount to check is **20**
+</Tip>
+
+### min\_shares\_amount\_top\_holder
+
+Minimum shares amount held by the top 1 holder to proceed with the trade.
+
+### max\_shares\_amount\_top\_holder
+
+Maximum shares amount held by the top 1 holder to proceed with the trade.
+
+### min\_total\_shares\_amount
+
+Minimum total shares amount held by all checked holders to proceed with the trade.
+
+### max\_total\_shares\_amount
+
+Maximum total shares amount held by all checked holders to proceed with the trade.
+
+</Accordion>
+
+<Accordion title="Polymarket Copy Trade">
+
+### turbo
+
+Set `true` for faster transaction execution.
+
+<Warning>
+Keep in mind you can be affected by:\
+\- non-existing orders\
+\- failed orders\
+\- slightly different amount or price
+
+**USE AT YOUR OWN RISK!** 
+</Warning>
+
+### min\_buy\_trigger
+
+Minimum trader's purchase amount to trigger buy.
+
+### max\_buy\_trigger
+
+Maximum trader's purchase amount to trigger buy.
+
+### min\_buy\_amount
+
+Minimum amount to spend if you use buy percentage in task.
+
+### max\_buy\_amount
+
+Maximum amount to spend if you use buy percentage in task.
+
+### min\_price
+
+Minimum share price to trigger buy.
+
+### max\_price
+
+Maximum share price to trigger buy.
+
+### skip\_sells
+
+Set `true` to skip trader's sells.
+
+### sell\_percentage
+
+Set fixed percentage of your position to sell when trader sells.
+
+### buy\_only\_first
+
+Set `true` to copy only first interaction on market by specified trader.
+
+### buy\_only\_yes
+
+Set `true` to buy only "YES" outcomes.
+
+### buy\_only\_no
+
+Set `true` to buy only "NO" outcomes.
+
+### reverse\_outcome
+
+When `true`, trades are mirrored to the opposite side of the market (e.g. trader buys YES, you will buy NO).
+
+### max\_trades\_per\_trader
+
+Maximum number of trades to perform per trader.
+
+### max\_trades\_per\_market
+
+Maximum number of trades to perform per market.
+
+</Accordion>

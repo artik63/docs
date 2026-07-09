@@ -1,0 +1,32 @@
+---
+title: "Solana common errors"
+---
+
+### Token account balance was not found in time range:
+
+* The bot did not log your solswap buy but the tokens were actually purchased -> just increase `buy_confirmation_subscription_timeout`
+* No tokens were bought -> your TXs probably failed OR dropped by validator (didn't get it into blockchain) \
+  \
+  **Solution:** Try to increase TX amount/Fees/Retries/Change RPC. 
+
+### Failed to create token account:
+
+* Your token account creation TXs were dropped by validator\
+  \
+  **Solution:** increase `pre_create_token_account_tx_amount` or/and `pre_create_token_account_fee` 
+
+### wsasend: An established connection was aborted by the software in your host machine:
+
+* Some different process uses ports on your machine
+
+**Solution:** open windows powershell and paste following:
+
+`Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "MaxUserPort" -Value 65534 -Type DWord`
+
+`Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "TcpTimedWaitDelay" -Value 30 -Type DWord`
+
+`Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "TcpNumConnections" -Value 0x00fffffe -Type DWord`
+
+`Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" -Name "MaxMpxCt" -Value 65535 -Type DWord`
+
+`netsh int ipv4 set dynamicport tcp start=1025 num=64510`

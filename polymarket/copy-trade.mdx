@@ -1,0 +1,10 @@
+---
+title: "Copy Trade"
+icon: user-robot-xmarks
+---
+
+## Overview
+
+The **Copy Trade** module allows you to mirror trades from selected wallets in real-time.
+
+<table><thead><tr><th width="157.3333740234375">Field name</th><th>Description</th></tr></thead><tbody><tr><td><h3>Wallet</h3></td><td><code>Wallet name</code></td></tr><tr><td><h3>Mode</h3></td><td><code>copy</code></td></tr><tr><td><h3>Data</h3></td><td><code>empty</code></td></tr><tr><td><h3>Target</h3></td><td><code>copy-trade proxy-wallet address</code>  <br /><br /><strong>How to get it?</strong><br />Go to the trader profile and press "Copy address"</td></tr><tr><td><h3>Order Type  </h3></td><td><code>partial</code> or <strong>empty</strong> - a market order to buy (in USD) or sell (in shares) that executes immediately for the available amount; any unfilled portion is canceled<br /><code>exact</code> - a market order to buy (in USD) or sell (in shares) that must be fully executed immediately; otherwise, the entire order is canceled.<br /><code>limit</code> - best used for 99%+ or 1%− outcomes; other order types do not work reliably at such odds.<br /><br /><strong>MINIMUM BUY AMOUNT ON POLYMARKET IF YOU USE BUY IN PERCENTAGE:</strong><br /><strong>partial, exact - 1$</strong><br /><strong>limit - 5$</strong></td></tr><tr><td><h3>Amount</h3></td><td><p><code>Amount in stable/% of trader's buy</code>  <br /><br /></p><p></p><p><strong>Example:</strong> <br /><code>10</code> = 10$<br /><code>50%</code> = 50% of trader's buy amount</p></td></tr><tr><td><h3>Slippage</h3></td><td>Slippage amount</td></tr><tr><td><h3><a href="/cli/preset">Preset</a></h3></td><td>Preset name</td></tr></tbody></table>

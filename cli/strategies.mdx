@@ -1,0 +1,107 @@
+---
+title: "Strategies"
+icon: chess
+---
+
+![](/images/image-6.png)
+
+To use created task, make sure to move `solswap_example` from **EXAMPLES TO TASKS**
+
+<Note>
+**How strategies work?** 
+
+All calculations are based on BUY MARKET CAP and DON'T DEPEND on position value
+
+Example: `If your BUY MC IS 100K and TP 100% bot would sell on 200K MCAP`
+</Note>
+
+**General info:** \
+To use strategies in task, you need to setup strategy file and give it name (example: `copytrade-test`)\
+To use MULTIPLE STRATEGIES by adding new lines
+
+<Tabs>
+<Tab title="TP">
+**TP PERC**\
+Take profit percentage to execute sell.
+
+**TP PERC TO SELL**\
+Percentage of your position to sell on trigger.
+
+<Note>
+For **SOL** you can also specify **EXACT MARKETCAP** instead of percentage.\
+Format example:\
+TP PERC - `10000$` OR `10k$` OR `10m$` for exact marketcap trigger.
+</Note>
+
+<Note>
+For **Polymarket** you can also specify **EXACT SHARE VALUE** instead of percentage.\
+Format example:\
+TP PERC - `0.9$`  means sell transaction will be executed when onchain price hits 0.9$.
+</Note>
+</Tab>
+
+<Tab title="SL">
+**SL PERC**\
+Stop Loss percentage to execute sell.
+
+**TP PERC TO SELL**\
+Percentage of your position to sell on trigger.
+
+<Note>
+For **SOL** you can also specify **EXACT MARKETCAP** instead of percentage.\
+Format example:\
+SL PERC - `5000$` OR `5k$` OR `5m$` for exact marketcap trigger.
+</Note>
+
+<Note>
+For **Polymarket** you can also specify **EXACT SHARE VALUE** instead of percentage.\
+Example:\
+SL PERC - `0.1$`  means sell transaction will be executed when onchain price hits 0.1$.
+</Note>
+</Tab>
+
+<Tab title="Timeout">
+**TIMEOUT MS**\
+X milliseconds to proceed sell after
+
+**TIMEOUT PERC TO SELL**\
+Percentage of your current position to sell
+</Tab>
+
+<Tab title="Dev Sell">
+**DEV SELL PERC**\
+**P**ercentage of dev's position sold that will trigger sell
+
+**DEV SELL PERC TO SELL**\
+Percentage of your current position to sell
+</Tab>
+
+<Tab title="Inactivty">
+**INACTIVITY TIMEOUT MS** \
+Time in milliseconds to check activity on specific token.
+
+**INACTIVITY PERC**\
+Movement percentage to determine as inactivity range (both positive and negative price change).
+
+**INACTIVITY PERC TO SELL**\
+Percentage of your current percentage to sell on strategy trigger.
+
+<Note>
+In order to properly detect inactivity you need **MULTIPLE** ticks of `position update interval` during `inactivity timeout`. More updates you have - better detection!
+</Note>
+</Tab>
+
+<Tab title="Trailing SL">
+### Trailing stop loss explanation
+
+This strategy uses ATH which was detected while your position is monitored. If your current position is `X (trailing stop loss percentage)` down from ATH - bot will sell `Y (trailing stop loss percentage to sell)` part of your position. Mostly used for mooners in case they are going to 0.
+
+***
+
+**TRAILING SL PERC**\
+Trailing stop loss percentage
+
+**TRAILING SL PERC TO SELL**\
+Percentage of your current position to sell
+</Tab>
+</Tabs>
